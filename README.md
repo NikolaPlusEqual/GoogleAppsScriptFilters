@@ -25,5 +25,5 @@ Google Apps Script functions that return array of filtered rows in a spreadsheet
  
  Every GoogleAppsScriptFilters function has two additional parameters: rng and col   
  rng parameter represents the range which function takes,   
- col parameter represents the column in which criteria will be applied.   
+ col parameter represents the column in which filtering criteria will be applied.   
 
