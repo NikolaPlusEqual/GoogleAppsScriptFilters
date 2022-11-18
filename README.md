@@ -1,9 +1,9 @@
 # GoogleAppsScriptFilters
 Google Apps Script functions that return array of filtered rows in a spreadsheet. Inspired by https://developers.google.com/apps-script/reference/spreadsheet/filter-criteria-builder
 
-| FilterCriteriaBuilder Class------------| GoogleAppsScriptFilters functions----------------|
+| FilterCriteriaBuilder Class------------| GoogleAppsScriptFilters functions----------------|\r\n
 --------------------------------------------------------------------------------------------
-| whenDateNotEqualTo(date)-------------- | whenDateNotEqualTo(date, rng, col)-------------- |
+| whenDateNotEqualTo(date)-------------- | whenDateNotEqualTo(date, rng, col)-------------- |\r\n
 | whenDateNotEqualToAny(dates)---------- | whenDateNotEqualToAny(dateArr, rng, col)-------- |
 | whenNumberBetween(start,end)---------- | whenNumberBetween(start, end, rng, col)----------|
 | whenNumberEqualTo(number)--------------| whenNumberEqualTo(number, rng, col)--------------|
