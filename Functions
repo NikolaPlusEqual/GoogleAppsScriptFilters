@@ -1,0 +1,649 @@
+var setData = {}
+
+///// TO DO
+///// Check should || be replaced with &&
+///// Check ...Any functions for true/false corrections
+///// Test
+
+function whenDateNotEqualToAny(dateArr, rng, col){
+  var trueType = true;
+  dateArr.forEach(function(item){
+    if (Object.prototype.toString.call(item).substring(8,12)!="Date"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" || trueType == true){
+    setData.col = col;
+    setData.dateArr = dateArr;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wdneta);
+  return output;
+}
+
+function wdneta(ar){
+  var res = false;
+  var dateArr = setData.dateArr;
+  var col = setData.col - 1;
+  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
+    var date2Days = Math.floor(ar[col].getTime()/86400000);
+  }
+  else{
+    return false;
+  }
+  dateArr.forEach(function(item){
+    if(date2Days != Math.floor(item.getTime()/86400000) && Object.prototype.toString.call(item).substring(8,12)=="Date"){
+      res = true;
+    }});
+  return res;
+}
+
+function whenDateEqualToAny(dateArr, rng, col){
+  var trueType = true;
+  dateArr.forEach(function(item){
+    if (Object.prototype.toString.call(item).substring(8,12)!="Date"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" || trueType == true){
+    setData.col = col;
+    setData.dateArr = dateArr;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wdeta);
+  return output;
+}
+
+function wdeta(ar){
+  var res = false;
+  var dateArr = setData.dateArr;
+  var col = setData.col - 1;
+  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
+    var date2Days = Math.floor(ar[col].getTime()/86400000);
+  }
+  else{
+    return false;
+  }
+  dateArr.forEach(function(item){
+    if(date2Days == Math.floor(item.getTime()/86400000) && Object.prototype.toString.call(item).substring(8,12)=="Date"){
+      res = true;
+    }});
+  return res;
+}
+
+function whenDateNotEqualTo(date, rng, col){
+  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    setData.col = col;
+    setData.date = date;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wdnet);
+  return output;
+}
+
+function wdnet(ar){
+  var date = setData.date;
+  var col = setData.col - 1;
+  if (Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = Math.floor(date.getTime()/86400000);
+  }
+  else{
+    return false;
+  }
+  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
+    var date2Days = Math.floor(ar[col].getTime()/86400000);
+  }
+  else{
+    return false;
+  }
+
+  return date1Days != date2Days;
+}
+
+function whenDateEqualTo(date, rng, col){
+  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    setData.col = col;
+    setData.date = date;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wdet);
+  return output;
+}
+
+function wdet(ar){
+  var date = setData.date;
+  var col = setData.col - 1;
+  if (Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = Math.floor(date.getTime()/86400000);
+  }
+  else{
+    return false;
+  }
+  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
+    var date2Days = Math.floor(ar[col].getTime()/86400000);
+  }
+  else{
+    return false;
+  }
+
+  return date1Days === date2Days;
+}
+
+function whenDateBefore(date, rng, col){
+  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    setData.col = col;
+    setData.date = date;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wdb);
+  return output;
+}
+
+function wdb(ar){    ////////////////// https://bobbyhadz.com/blog/javascript-compare-dates-without-time
+  var date = setData.date;
+  var col = setData.col - 1;
+  if (Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = new Date(date.getTime());
+    date1Days.setUTCHours(0, 0, 0, 0);
+  }
+  else{
+    return false;
+  }
+  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
+    var date2Days = new Date(ar[col].getTime());
+    date2Days.setUTCHours(0, 0, 0, 0);
+  }
+  else{
+    return false;
+  }
+
+  return date1Days < date2Days;
+}
+
+function whenDateAfter(date, rng, col){
+  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    setData.col = col;
+    setData.date = date;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wda);
+  return output;
+}
+
+function wda(ar){
+  var date = setData.date;
+  var col = setData.col - 1;
+  if (Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = new Date(date.getTime());
+    date1Days.setUTCHours(0, 0, 0, 0);
+  }
+  else{
+    return false;
+  }
+  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
+    var date2Days = new Date(ar[col].getTime());
+    date2Days.setUTCHours(0, 0, 0, 0);
+  }
+  else{
+    return false;
+  }
+
+  return date1Days > date2Days;
+}
+
+function whenNumberNotBetween(start, end, rng, col){
+  if (typeof col == "number" || typeof start == "number" || typeof end == "number"){
+    setData.col = col;
+    setData.num = start;
+    setData.num_end = end;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wnnb);
+  return output;
+}
+
+function wnnb(ar){
+  var start = setData.num;
+  var end = setData.num_end;
+  var col = setData.col - 1;
+  var between_condition = ar[col] > end || ar[col] < start;
+  return between_condition && typeof ar[col]=="number";
+}
+
+function whenNumberBetween(start, end, rng, col){
+  if (typeof col == "number" || typeof start == "number" || typeof end == "number"){
+    setData.col = col;
+    setData.num = start;
+    setData.num_end = end;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wnb);
+  return output;
+}
+
+function wnb(ar){
+  var start = setData.num;
+  var end = setData.num_end;
+  var col = setData.col - 1;
+  var between_condition = ar[col] <= end && ar[col] >= start;
+  return between_condition && typeof ar[col]=="number";
+}
+
+function whenTrimmedCellEmpty(rng, col){
+  if (typeof col == "number"){
+    setData.col = col;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtce);
+  return output;
+}
+
+function wtce(ar){
+  var col = setData.col - 1;
+  return ar[col].toString().trim() == "";
+}
+
+function whenCellNotEmpty(rng, col){
+  if (typeof col == "number"){
+    setData.col = col;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wcne);
+  return output;
+}
+
+function wcne(ar){
+  var col = setData.col - 1;
+  return ar[col] != "";
+}
+
+function whenCellEmpty(rng, col){
+  if (typeof col == "number"){
+    setData.col = col;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wce);
+  return output;
+}
+
+function wce(ar){
+  var col = setData.col - 1;
+  return ar[col] == "";
+}
+
+function whenTrimmedTextEndsWith(txt, rng, col){
+  if (typeof col == "number" || typeof txt == "string"){
+    setData.col = col;
+    setData.txt = txt;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtew);
+  return output;
+}
+
+function wttew(ar){
+  var txt = setData.txt;
+  var col = setData.col - 1;
+  var str =  ar[col].toString().trim();
+  return str.endsWith(txt);
+}
+
+function whenTextEndsWith(txt, rng, col){
+  if (typeof col == "number" || typeof txt == "string"){
+    setData.col = col;
+    setData.txt = txt;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtew);
+  return output;
+}
+
+function wtew(ar){
+  var txt = setData.txt;
+  var col = setData.col - 1;
+  var str =  ar[col].toString();
+  return str.endsWith(txt);
+}
+
+function whenTextStartsWith(txt, rng, col){
+  if (typeof col == "number" || typeof txt == "string"){
+    setData.col = col;
+    setData.txt = txt;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtsw);
+  return output;
+}
+
+function wtsw(ar){
+  var txt = setData.txt;
+  var col = setData.col - 1;
+  var str =  ar[col].toString();
+  return str.startsWith(txt);
+}
+
+function whenTextDoesNotContain(txt, rng, col){
+  if (typeof col == "number" || typeof txt == "string"){
+    setData.col = col;
+    setData.txt = txt;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtdnc);
+  return output;
+}
+
+function wtdnc(ar){
+  var txt = setData.txt;
+  var col = setData.col - 1;
+  var str =  ar[col].toString();
+  return !str.includes(txt);
+}
+
+function whenTextContains(txt, rng, col){
+  if (typeof col == "number" || typeof txt == "string"){
+    setData.col = col;
+    setData.txt = txt;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtc);
+  return output;
+}
+
+function wtc(ar){
+  var txt = setData.txt;
+  var col = setData.col - 1;
+  var str =  ar[col].toString();
+  return str.includes(txt);
+}
+
+function whenTextNotEqualTo(txt, rng, col){
+  if (typeof col == "number" || typeof txt == "string"){
+    setData.col = col;
+    setData.txt = txt;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtnet);
+  return output;
+}
+
+function wtnet(ar){
+  var txt = setData.txt;
+  var col = setData.col - 1;
+  return ar[col] != txt;
+}
+
+function whenTextEqualTo(txt, rng, col){
+  if (typeof col == "number" || typeof txt == "string"){
+    setData.col = col;
+    setData.txt = txt;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtet);
+  return output;
+}
+
+function wtet(ar){
+  var txt = setData.txt;
+  var col = setData.col - 1;
+  return ar[col] == txt;
+}
+
+function whenTextEqualToAny(textArr, rng, col){
+  var trueType = true;
+  textArr.forEach(function(item){
+    if (typeof item != "string"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" || trueType == true){
+    setData.col = col;
+    setData.txtArr = textArr;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wteta);
+  return output;
+}
+
+function wteta(ar){
+  var res = false;
+  var txtArr = setData.txtArr;
+  var col = setData.col - 1;
+  txtArr.forEach(function(item){
+    if(ar[col] == item && typeof ar[col] == "string"){
+      res = true;
+    }});
+  return res;
+}
+
+function whenTextNotEqualToAny(textArr, rng, col){
+  var trueType = true;
+  textArr.forEach(function(item){
+    if (typeof item != "string"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" || trueType == true){
+    setData.col = col;
+    setData.txtArr = textArr;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wtneta);
+  return output;
+}
+
+function wtneta(ar){
+  var res = true;
+  var txtArr = setData.txtArr;
+  var col = setData.col - 1;
+  txtArr.forEach(function(item){
+    if(ar[col] == item || typeof ar[col] != "string"){
+      res = false;
+    }});
+  return res;
+}
+
+function whenNumberLessThan(number, rng, col){
+  if (typeof col == "number" || typeof number == "number"){
+    setData.col = col;
+    setData.num = number;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wnlt);
+  return output;
+}
+
+function wnlt(ar){
+  var num = setData.num;
+  var col = setData.col - 1;
+  return ar[col] < num && typeof ar[col]=="number";
+}
+
+function whenNumberGreaterThan(number, rng, col){
+  if (typeof col == "number" || typeof number == "number"){
+    setData.col = col;
+    setData.num = number;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wngt);
+  return output;
+}
+
+function wngt(ar){
+  var num = setData.num;
+  var col = setData.col - 1;
+  return ar[col] > num && typeof ar[col]=="number";
+}
+
+function whenNumberGreaterThanOrEqualTo(number, rng, col){
+  if (typeof col == "number" || typeof number == "number"){
+    setData.col = col;
+    setData.num = number;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wngtoet);
+  return output;
+}
+
+function wngtoet(ar){
+  var num = setData.num;
+  var col = setData.col - 1;
+  return ar[col] >= num && typeof ar[col]=="number";
+}
+
+function whenNumberNotEqualToAny(numberArr, rng, col){
+  var trueType = true;
+  numberArr.forEach(function(item){
+    if (typeof item != "number"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" || trueType == true){
+    setData.col = col;
+    setData.numArr = numberArr;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wnneta);
+  return output;
+}
+
+function wnneta(ar){
+  var res = true;
+  var numArr = setData.numArr;
+  var col = setData.col - 1;
+  numArr.forEach(function(item){
+    if(ar[col] == item || typeof ar[col] != "number"){
+      res = false;
+    }});
+  return res;
+}
+
+function whenNumberEqualToAny(numberArr, rng, col){
+  var trueType = true;
+  numberArr.forEach(function(item){
+    if (typeof item != "number"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" || trueType == true){
+    setData.col = col;
+    setData.numArr = numberArr;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wneta);
+  return output;
+}
+
+function wneta(ar){
+  var res = false;
+  var numArr = setData.numArr;
+  var col = setData.col - 1;
+  numArr.forEach(function(item){
+    if(ar[col] == item){
+      res = true;
+    }});
+  return res;
+}
+
+function whenNumberLessThanOrEqualTo(number, rng, col){
+  if (typeof col == "number" || typeof number == "number"){
+    setData.col = col;
+    setData.num = number;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wnltoet);
+  return output;
+}
+
+function wnltoet(ar){
+  var num = setData.num;
+  var col = setData.col - 1;
+  return ar[col] <= num && typeof ar[col]=="number";
+}
+
+function whenNumberNotEqualTo(number, rng, col){
+  if (typeof col == "number" || typeof number == "number"){
+    setData.col = col;
+    setData.num = number;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wnnet);
+  return output;
+}
+
+function wnnet(ar){
+  var num = setData.num;
+  var col = setData.col - 1;
+  return ar[col] != num;
+}
+
+function whenNumberEqualTo(number, rng, col){
+  if (typeof col == "number" || typeof number == "number"){
+    setData.col = col;
+    setData.num = number;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wnet);
+  return output;
+}
+
+function wnet(ar){
+  var num = setData.num;
+  var col = setData.col - 1;
+  return ar[col] == num;
+}
