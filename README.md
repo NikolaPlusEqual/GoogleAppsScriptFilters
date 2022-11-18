@@ -1,9 +1,9 @@
 # GoogleAppsScriptFilters
 Google Apps Script functions that return array of filtered rows in a spreadsheet. Inspired by https://developers.google.com/apps-script/reference/spreadsheet/filter-criteria-builder
 
-| FilterCriteriaBuilder Class---------------| GoogleAppsScriptFilters functions----------------|  
-| whenDateNotEqualTo(date)------------------ | whenDateNotEqualTo(date, rng, col)-------------- |   
-| whenDateNotEqualToAny(dates)-------------- | whenDateNotEqualToAny(dateArr, rng, col)-------- |   
+| FilterCriteriaBuilder Class-------------------| GoogleAppsScriptFilters functions----------------|  
+| whenDateNotEqualTo(date)--------------------- | whenDateNotEqualTo(date, rng, col)-------------- |   
+| whenDateNotEqualToAny(dates)---------------- | whenDateNotEqualToAny(dateArr, rng, col)-------- |   
 | whenNumberBetween(start,end)------------- | whenNumberBetween(start, end, rng, col)----------|   
 | whenNumberEqualTo(number)----------------| whenNumberEqualTo(number, rng, col)--------------|   
 | whenNumberEqualToAny(numbers)------------| whenNumberEqualToAny(numberArr, rng, col)--------|   
@@ -20,5 +20,5 @@ Google Apps Script functions that return array of filtered rows in a spreadsheet
 | whenTextEqualTo(text)-----------------------| whenTextEqualTo(txt, rng, col)------------------ |   
 | whenTextEqualToAny(texts)-------------------| whenTextEqualToAny(textArr, rng, col)------------|   
 | whenTextNotEqualTo(text)-------------------- | whenTextNotEqualTo(txt, rng, col)----------------|   
-| whenTextNotEqualToAny(texts)------------- | whenTextNotEqualToAny(textArr, rng, col)-------- |   
-| whenTextStartsWith(text)------------------ | whenTextStartsWith(txt, rng, col)----------------|   
+| whenTextNotEqualToAny(texts)----------------- | whenTextNotEqualToAny(textArr, rng, col)-------- |   
+| whenTextStartsWith(text)---------------------- | whenTextStartsWith(txt, rng, col)----------------|   
