@@ -21,5 +21,9 @@ Google Apps Script functions that return array of filtered rows in a spreadsheet
  whenTextEqualToAny(texts) --->  whenTextEqualToAny(textArr, rng, col)   
  whenTextNotEqualTo(text) --->  whenTextNotEqualTo(txt, rng, col)   
  whenTextNotEqualToAny(texts) --->  whenTextNotEqualToAny(textArr, rng, col)   
- whenTextStartsWith(text) --->  whenTextStartsWith(txt, rng, col)   
+ whenTextStartsWith(text) --->  whenTextStartsWith(txt, rng, col)  
+ 
+ Every GoogleAppsScriptFilters function has two additional parameters: rng and col
+ rng parameter represents the range which function takes,
+ col parameter represents the column in which criteria will be applied.
 
