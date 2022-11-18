@@ -1,11 +1,10 @@
 # GoogleAppsScriptFilters
 Google Apps Script functions that return array of filtered rows in a spreadsheet. Inspired by https://developers.google.com/apps-script/reference/spreadsheet/filter-criteria-builder
 
-| FilterCriteriaBuilder Class------------| GoogleAppsScriptFilters functions----------------| Additional functions 
-----------------------------------------------------------------------------------------------------------------------------
-| whenDateNotEqualTo(date)-------------- | whenDateNotEqualTo(date, rng, col)-------------- | whenTrimmedCellEmpty(rng, col) 
+| FilterCriteriaBuilder Class------------| GoogleAppsScriptFilters functions----------------|
+--------------------------------------------------------------------------------------------
+| whenDateNotEqualTo(date)-------------- | whenDateNotEqualTo(date, rng, col)-------------- |
 | whenDateNotEqualToAny(dates)---------- | whenDateNotEqualToAny(dateArr, rng, col)-------- |
-| whenFormulaSatisfied(formula)----------| X------------------------------------------------|
 | whenNumberBetween(start,end)---------- | whenNumberBetween(start, end, rng, col)----------|
 | whenNumberEqualTo(number)--------------| whenNumberEqualTo(number, rng, col)--------------|
 | whenNumberEqualToAny(numbers)----------| whenNumberEqualToAny(numberArr, rng, col)--------|
@@ -18,7 +17,7 @@ Google Apps Script functions that return array of filtered rows in a spreadsheet
 | whenNumberNotEqualToAny(numbers)------ | whenNumberNotEqualToAny(numberArr, rng, col)---- |
 | whenTextContains(text)---------------- | whenTextContains(txt, rng, col)------------------|
 | whenTextDoesNotContain(text)---------- | whenTextDoesNotContain(txt, rng, col)------------|
-| whenTextEndsWith(text)---------------- | whenTextEndsWith(txt, rng, col)------------------| whenTrimmedTextEndsWith(txt, rng, col)
+| whenTextEndsWith(text)---------------- | whenTextEndsWith(txt, rng, col)------------------|
 | whenTextEqualTo(text)------------------| whenTextEqualTo(txt, rng, col)------------------ |
 | whenTextEqualToAny(texts)--------------| whenTextEqualToAny(textArr, rng, col)------------|
 | whenTextNotEqualTo(text)-------------- | whenTextNotEqualTo(txt, rng, col)----------------|
