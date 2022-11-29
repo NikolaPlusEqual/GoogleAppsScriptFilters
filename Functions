@@ -1,11 +1,11 @@
 var setData = {}
 
-///// TO DO
-///// Check should || be replaced with &&
-///// Check ...Any functions for true/false corrections
-///// Test
-
+///////////////////////////////////////////////////////////////////////////////////////
 function whenDateNotEqualToAny(dateArr, rng, col){
+  if(Object.prototype.toString.call(dateArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
   var trueType = true;
   dateArr.forEach(function(item){
     if (Object.prototype.toString.call(item).substring(8,12)!="Date"){
@@ -40,7 +40,13 @@ function wdneta(ar){
   return res;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenDateEqualToAny(dateArr, rng, col){
+  if(Object.prototype.toString.call(dateArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
   var trueType = true;
   dateArr.forEach(function(item){
     if (Object.prototype.toString.call(item).substring(8,12)!="Date"){
@@ -75,6 +81,8 @@ function wdeta(ar){
   return res;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenDateNotEqualTo(date, rng, col){
   if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
     setData.col = col;
@@ -106,6 +114,8 @@ function wdnet(ar){
   return date1Days != date2Days;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenDateEqualTo(date, rng, col){
   if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
     setData.col = col;
@@ -136,6 +146,8 @@ function wdet(ar){
 
   return date1Days === date2Days;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 function whenDateBefore(date, rng, col){
   if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
@@ -170,6 +182,8 @@ function wdb(ar){    ////////////////// https://bobbyhadz.com/blog/javascript-co
   return date1Days < date2Days;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenDateAfter(date, rng, col){
   if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
     setData.col = col;
@@ -203,6 +217,8 @@ function wda(ar){
   return date1Days > date2Days;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberNotBetween(start, end, rng, col){
   if (typeof col == "number" || typeof start == "number" || typeof end == "number"){
     setData.col = col;
@@ -223,6 +239,8 @@ function wnnb(ar){
   var between_condition = ar[col] > end || ar[col] < start;
   return between_condition && typeof ar[col]=="number";
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 function whenNumberBetween(start, end, rng, col){
   if (typeof col == "number" || typeof start == "number" || typeof end == "number"){
@@ -245,6 +263,8 @@ function wnb(ar){
   return between_condition && typeof ar[col]=="number";
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenTrimmedCellEmpty(rng, col){
   if (typeof col == "number"){
     setData.col = col;
@@ -260,6 +280,8 @@ function wtce(ar){
   var col = setData.col - 1;
   return ar[col].toString().trim() == "";
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 function whenCellNotEmpty(rng, col){
   if (typeof col == "number"){
@@ -277,6 +299,8 @@ function wcne(ar){
   return ar[col] != "";
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenCellEmpty(rng, col){
   if (typeof col == "number"){
     setData.col = col;
@@ -292,6 +316,8 @@ function wce(ar){
   var col = setData.col - 1;
   return ar[col] == "";
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 function whenTrimmedTextEndsWith(txt, rng, col){
   if (typeof col == "number" || typeof txt == "string"){
@@ -312,6 +338,8 @@ function wttew(ar){
   return str.endsWith(txt);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenTextEndsWith(txt, rng, col){
   if (typeof col == "number" || typeof txt == "string"){
     setData.col = col;
@@ -330,6 +358,8 @@ function wtew(ar){
   var str =  ar[col].toString();
   return str.endsWith(txt);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 function whenTextStartsWith(txt, rng, col){
   if (typeof col == "number" || typeof txt == "string"){
@@ -350,6 +380,8 @@ function wtsw(ar){
   return str.startsWith(txt);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenTextDoesNotContain(txt, rng, col){
   if (typeof col == "number" || typeof txt == "string"){
     setData.col = col;
@@ -368,6 +400,8 @@ function wtdnc(ar){
   var str =  ar[col].toString();
   return !str.includes(txt);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 function whenTextContains(txt, rng, col){
   if (typeof col == "number" || typeof txt == "string"){
@@ -388,6 +422,8 @@ function wtc(ar){
   return str.includes(txt);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenTextNotEqualTo(txt, rng, col){
   if (typeof col == "number" || typeof txt == "string"){
     setData.col = col;
@@ -405,6 +441,8 @@ function wtnet(ar){
   var col = setData.col - 1;
   return ar[col] != txt;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 function whenTextEqualTo(txt, rng, col){
   if (typeof col == "number" || typeof txt == "string"){
@@ -424,7 +462,13 @@ function wtet(ar){
   return ar[col] == txt;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenTextEqualToAny(textArr, rng, col){
+  if(Object.prototype.toString.call(textArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
   var trueType = true;
   textArr.forEach(function(item){
     if (typeof item != "string"){
@@ -453,14 +497,21 @@ function wteta(ar){
   return res;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////    ----- TO BE CHECKED SO FAR!!!!
+
 function whenTextNotEqualToAny(textArr, rng, col){
+  if(Object.prototype.toString.call(textArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
   var trueType = true;
   textArr.forEach(function(item){
     if (typeof item != "string"){
       trueType = false;
     }
   });
-  if (typeof col == "number" || trueType == true){
+
+  if (typeof col == "number" && trueType == true){
     setData.col = col;
     setData.txtArr = textArr;
   }
@@ -482,8 +533,10 @@ function wtneta(ar){
   return res;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberLessThan(number, rng, col){
-  if (typeof col == "number" || typeof number == "number"){
+  if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
   }
@@ -500,8 +553,10 @@ function wnlt(ar){
   return ar[col] < num && typeof ar[col]=="number";
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberGreaterThan(number, rng, col){
-  if (typeof col == "number" || typeof number == "number"){
+  if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
   }
@@ -518,8 +573,10 @@ function wngt(ar){
   return ar[col] > num && typeof ar[col]=="number";
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberGreaterThanOrEqualTo(number, rng, col){
-  if (typeof col == "number" || typeof number == "number"){
+  if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
   }
@@ -536,14 +593,20 @@ function wngtoet(ar){
   return ar[col] >= num && typeof ar[col]=="number";
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberNotEqualToAny(numberArr, rng, col){
+  if(Object.prototype.toString.call(numberArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
   var trueType = true;
   numberArr.forEach(function(item){
     if (typeof item != "number"){
       trueType = false;
     }
   });
-  if (typeof col == "number" || trueType == true){
+  if (typeof col == "number" && trueType == true){
     setData.col = col;
     setData.numArr = numberArr;
   }
@@ -565,14 +628,20 @@ function wnneta(ar){
   return res;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberEqualToAny(numberArr, rng, col){
+  if(Object.prototype.toString.call(numberArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
   var trueType = true;
   numberArr.forEach(function(item){
     if (typeof item != "number"){
       trueType = false;
     }
   });
-  if (typeof col == "number" || trueType == true){
+  if (typeof col == "number" && trueType == true){
     setData.col = col;
     setData.numArr = numberArr;
   }
@@ -594,8 +663,10 @@ function wneta(ar){
   return res;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberLessThanOrEqualTo(number, rng, col){
-  if (typeof col == "number" || typeof number == "number"){
+  if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
   }
@@ -612,8 +683,10 @@ function wnltoet(ar){
   return ar[col] <= num && typeof ar[col]=="number";
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberNotEqualTo(number, rng, col){
-  if (typeof col == "number" || typeof number == "number"){
+  if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
   }
@@ -630,8 +703,10 @@ function wnnet(ar){
   return ar[col] != num;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 function whenNumberEqualTo(number, rng, col){
-  if (typeof col == "number" || typeof number == "number"){
+  if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
   }
@@ -647,3 +722,7 @@ function wnet(ar){
   var col = setData.col - 1;
   return ar[col] == num;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+
