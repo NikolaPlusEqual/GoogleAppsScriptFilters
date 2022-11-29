@@ -1,6 +1,8 @@
 # GoogleAppsScriptFilters
 Google Apps Script functions that return array of filtered rows in a spreadsheet. Inspired by https://developers.google.com/apps-script/reference/spreadsheet/filter-criteria-builder
 
+These functions do not affect activation of a filter in the sheet.
+
  FilterCriteriaBuilder Class function --->  GoogleAppsScriptFilters function   
  whenDateNotEqualTo(date) --->  whenDateNotEqualTo(date, rng, col)   
  whenDateNotEqualToAny(dates) --->  whenDateNotEqualToAny(dateArr, rng, col)   
