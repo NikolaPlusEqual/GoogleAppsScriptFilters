@@ -1,7 +1,17 @@
-var setData = {}
+var setData = {}   ////// MANDATORY OBJECT
+
+function letterToColumn(letter){  ////// MANDATORY HELPER FUNCTION
+  var column = 0, length = letter.length;
+  for (var i = 0; i < length; i++)
+  {
+    column += (letter.charCodeAt(i) - 64) * Math.pow(26, length - i - 1);
+  }
+  return column;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////
-function whenDateNotEqualToAny(dateArr, rng, col){
+function whenDateNotEqualToAny(dateArr, rng, col, targetCol = 0){
   if(Object.prototype.toString.call(dateArr).substring(8,13)!="Array"){
     Logger.log("Object is not an array");
     return;
@@ -12,7 +22,7 @@ function whenDateNotEqualToAny(dateArr, rng, col){
       trueType = false;
     }
   });
-  if (typeof col == "number" || trueType == true){
+  if (typeof col == "number" && trueType == true){
     setData.col = col;
     setData.dateArr = dateArr;
   }
@@ -20,7 +30,25 @@ function whenDateNotEqualToAny(dateArr, rng, col){
     return;
   }
   var output = rng.filter(wdneta);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wdneta(ar){
@@ -42,7 +70,7 @@ function wdneta(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenDateEqualToAny(dateArr, rng, col){
+function whenDateEqualToAny(dateArr, rng, col, targetCol = 0){
   if(Object.prototype.toString.call(dateArr).substring(8,13)!="Array"){
     Logger.log("Object is not an array");
     return;
@@ -53,7 +81,7 @@ function whenDateEqualToAny(dateArr, rng, col){
       trueType = false;
     }
   });
-  if (typeof col == "number" || trueType == true){
+  if (typeof col == "number" && trueType == true){
     setData.col = col;
     setData.dateArr = dateArr;
   }
@@ -61,7 +89,25 @@ function whenDateEqualToAny(dateArr, rng, col){
     return;
   }
   var output = rng.filter(wdeta);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wdeta(ar){
@@ -83,8 +129,8 @@ function wdeta(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenDateNotEqualTo(date, rng, col){
-  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
+function whenDateNotEqualTo(date, rng, col, targetCol = 0){
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
     setData.col = col;
     setData.date = date;
   }
@@ -92,7 +138,25 @@ function whenDateNotEqualTo(date, rng, col){
     return;
   }
   var output = rng.filter(wdnet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wdnet(ar){
@@ -116,8 +180,8 @@ function wdnet(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenDateEqualTo(date, rng, col){
-  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
+function whenDateEqualTo(date, rng, col, targetCol = 0){
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
     setData.col = col;
     setData.date = date;
   }
@@ -125,7 +189,25 @@ function whenDateEqualTo(date, rng, col){
     return;
   }
   var output = rng.filter(wdet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wdet(ar){
@@ -149,8 +231,8 @@ function wdet(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenDateBefore(date, rng, col){
-  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
+function whenDateBefore(date, rng, col, targetCol = 0){
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
     setData.col = col;
     setData.date = date;
   }
@@ -158,45 +240,28 @@ function whenDateBefore(date, rng, col){
     return;
   }
   var output = rng.filter(wdb);
-  return output;
-}
-
-function wdb(ar){    ////////////////// https://bobbyhadz.com/blog/javascript-compare-dates-without-time
-  var date = setData.date;
-  var col = setData.col - 1;
-  if (Object.prototype.toString.call(date).substring(8,12)=="Date"){
-    var date1Days = new Date(date.getTime());
-    date1Days.setUTCHours(0, 0, 0, 0);
+  if(targetCol == 0){
+    return output;
   }
-  else{
-    return false;
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
   }
-  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
-    var date2Days = new Date(ar[col].getTime());
-    date2Days.setUTCHours(0, 0, 0, 0);
-  }
-  else{
-    return false;
-  }
-
-  return date1Days < date2Days;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////
-
-function whenDateAfter(date, rng, col){
-  if (typeof col == "number" || Object.prototype.toString.call(date).substring(8,12)=="Date"){
-    setData.col = col;
-    setData.date = date;
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
   }
   else{
     return;
   }
-  var output = rng.filter(wda);
-  return output;
 }
 
-function wda(ar){
+function wdb(ar){    ////////////////// https://bobbyhadz.com/blog/javascript-compare-dates-without-time
   var date = setData.date;
   var col = setData.col - 1;
   if (Object.prototype.toString.call(date).substring(8,12)=="Date"){
@@ -219,8 +284,61 @@ function wda(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberNotBetween(start, end, rng, col){
-  if (typeof col == "number" || typeof start == "number" || typeof end == "number"){
+function whenDateAfter(date, rng, col, targetCol = 0){
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    setData.col = col;
+    setData.date = date;
+  }
+  else{
+    return;
+  }
+  var output = rng.filter(wda);
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
+}
+
+function wda(ar){
+  var date = setData.date;
+  var col = setData.col - 1;
+  if (Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = new Date(date.getTime());
+    date1Days.setUTCHours(0, 0, 0, 0);
+  }
+  else{
+    return false;
+  }
+  if (Object.prototype.toString.call(ar[col]).substring(8,12)=="Date"){
+    var date2Days = new Date(ar[col].getTime());
+    date2Days.setUTCHours(0, 0, 0, 0);
+  }
+  else{
+    return false;
+  }
+
+  return date1Days < date2Days;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+function whenNumberNotBetween(start, end, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof start == "number" && typeof end == "number"){
     setData.col = col;
     setData.num = start;
     setData.num_end = end;
@@ -229,7 +347,25 @@ function whenNumberNotBetween(start, end, rng, col){
     return;
   }
   var output = rng.filter(wnnb);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wnnb(ar){
@@ -242,8 +378,8 @@ function wnnb(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberBetween(start, end, rng, col){
-  if (typeof col == "number" || typeof start == "number" || typeof end == "number"){
+function whenNumberBetween(start, end, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof start == "number" && typeof end == "number"){
     setData.col = col;
     setData.num = start;
     setData.num_end = end;
@@ -252,7 +388,25 @@ function whenNumberBetween(start, end, rng, col){
     return;
   }
   var output = rng.filter(wnb);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wnb(ar){
@@ -265,7 +419,7 @@ function wnb(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTrimmedCellEmpty(rng, col){
+function whenTrimmedCellEmpty(rng, col, targetCol = 0){
   if (typeof col == "number"){
     setData.col = col;
   }
@@ -273,7 +427,25 @@ function whenTrimmedCellEmpty(rng, col){
     return;
   }
   var output = rng.filter(wtce);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtce(ar){
@@ -283,7 +455,7 @@ function wtce(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenCellNotEmpty(rng, col){
+function whenCellNotEmpty(rng, col, targetCol = 0){
   if (typeof col == "number"){
     setData.col = col;
   }
@@ -291,7 +463,25 @@ function whenCellNotEmpty(rng, col){
     return;
   }
   var output = rng.filter(wcne);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wcne(ar){
@@ -301,7 +491,7 @@ function wcne(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenCellEmpty(rng, col){
+function whenCellEmpty(rng, col, targetCol = 0){
   if (typeof col == "number"){
     setData.col = col;
   }
@@ -309,7 +499,25 @@ function whenCellEmpty(rng, col){
     return;
   }
   var output = rng.filter(wce);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wce(ar){
@@ -317,10 +525,10 @@ function wce(ar){
   return ar[col] == "";
 }
 
-///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////---------------------------------
 
-function whenTrimmedTextEndsWith(txt, rng, col){
-  if (typeof col == "number" || typeof txt == "string"){
+function whenTrimmedTextEndsWith(txt, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof txt == "string"){
     setData.col = col;
     setData.txt = txt;
   }
@@ -328,7 +536,25 @@ function whenTrimmedTextEndsWith(txt, rng, col){
     return;
   }
   var output = rng.filter(wtew);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wttew(ar){
@@ -340,8 +566,8 @@ function wttew(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextEndsWith(txt, rng, col){
-  if (typeof col == "number" || typeof txt == "string"){
+function whenTextEndsWith(txt, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof txt == "string"){
     setData.col = col;
     setData.txt = txt;
   }
@@ -349,7 +575,25 @@ function whenTextEndsWith(txt, rng, col){
     return;
   }
   var output = rng.filter(wtew);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtew(ar){
@@ -361,8 +605,8 @@ function wtew(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextStartsWith(txt, rng, col){
-  if (typeof col == "number" || typeof txt == "string"){
+function whenTextStartsWith(txt, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof txt == "string"){
     setData.col = col;
     setData.txt = txt;
   }
@@ -370,7 +614,25 @@ function whenTextStartsWith(txt, rng, col){
     return;
   }
   var output = rng.filter(wtsw);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtsw(ar){
@@ -382,8 +644,8 @@ function wtsw(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextDoesNotContain(txt, rng, col){
-  if (typeof col == "number" || typeof txt == "string"){
+function whenTextDoesNotContain(txt, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof txt == "string"){
     setData.col = col;
     setData.txt = txt;
   }
@@ -391,7 +653,25 @@ function whenTextDoesNotContain(txt, rng, col){
     return;
   }
   var output = rng.filter(wtdnc);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtdnc(ar){
@@ -403,8 +683,8 @@ function wtdnc(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextContains(txt, rng, col){
-  if (typeof col == "number" || typeof txt == "string"){
+function whenTextContains(txt, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof txt == "string"){
     setData.col = col;
     setData.txt = txt;
   }
@@ -412,7 +692,25 @@ function whenTextContains(txt, rng, col){
     return;
   }
   var output = rng.filter(wtc);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtc(ar){
@@ -424,8 +722,8 @@ function wtc(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextNotEqualTo(txt, rng, col){
-  if (typeof col == "number" || typeof txt == "string"){
+function whenTextNotEqualTo(txt, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof txt == "string"){
     setData.col = col;
     setData.txt = txt;
   }
@@ -433,7 +731,25 @@ function whenTextNotEqualTo(txt, rng, col){
     return;
   }
   var output = rng.filter(wtnet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtnet(ar){
@@ -444,8 +760,8 @@ function wtnet(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextEqualTo(txt, rng, col){
-  if (typeof col == "number" || typeof txt == "string"){
+function whenTextEqualTo(txt, rng, col, targetCol = 0){
+  if (typeof col == "number" && typeof txt == "string"){
     setData.col = col;
     setData.txt = txt;
   }
@@ -453,7 +769,25 @@ function whenTextEqualTo(txt, rng, col){
     return;
   }
   var output = rng.filter(wtet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtet(ar){
@@ -464,7 +798,7 @@ function wtet(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextEqualToAny(textArr, rng, col){
+function whenTextEqualToAny(textArr, rng, col, targetCol = 0){
   if(Object.prototype.toString.call(textArr).substring(8,13)!="Array"){
     Logger.log("Object is not an array");
     return;
@@ -475,7 +809,7 @@ function whenTextEqualToAny(textArr, rng, col){
       trueType = false;
     }
   });
-  if (typeof col == "number" || trueType == true){
+  if (typeof col == "number" && trueType == true){
     setData.col = col;
     setData.txtArr = textArr;
   }
@@ -483,7 +817,25 @@ function whenTextEqualToAny(textArr, rng, col){
     return;
   }
   var output = rng.filter(wteta);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wteta(ar){
@@ -497,9 +849,9 @@ function wteta(ar){
   return res;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////    ----- TO BE CHECKED SO FAR!!!!
+///////////////////////////////////////////////////////////////////////////////////////
 
-function whenTextNotEqualToAny(textArr, rng, col){
+function whenTextNotEqualToAny(textArr, rng, col, targetCol = 0){
   if(Object.prototype.toString.call(textArr).substring(8,13)!="Array"){
     Logger.log("Object is not an array");
     return;
@@ -519,7 +871,25 @@ function whenTextNotEqualToAny(textArr, rng, col){
     return;
   }
   var output = rng.filter(wtneta);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wtneta(ar){
@@ -535,7 +905,7 @@ function wtneta(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberLessThan(number, rng, col){
+function whenNumberLessThan(number, rng, col, targetCol = 0){
   if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
@@ -544,7 +914,25 @@ function whenNumberLessThan(number, rng, col){
     return;
   }
   var output = rng.filter(wnlt);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wnlt(ar){
@@ -555,7 +943,7 @@ function wnlt(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberGreaterThan(number, rng, col){
+function whenNumberGreaterThan(number, rng, col, targetCol = 0){
   if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
@@ -564,7 +952,25 @@ function whenNumberGreaterThan(number, rng, col){
     return;
   }
   var output = rng.filter(wngt);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wngt(ar){
@@ -575,7 +981,7 @@ function wngt(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberGreaterThanOrEqualTo(number, rng, col){
+function whenNumberGreaterThanOrEqualTo(number, rng, col, targetCol = 0){
   if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
@@ -584,7 +990,25 @@ function whenNumberGreaterThanOrEqualTo(number, rng, col){
     return;
   }
   var output = rng.filter(wngtoet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wngtoet(ar){
@@ -595,7 +1019,7 @@ function wngtoet(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberNotEqualToAny(numberArr, rng, col){
+function whenNumberNotEqualToAny(numberArr, rng, col, targetCol = 0){
   if(Object.prototype.toString.call(numberArr).substring(8,13)!="Array"){
     Logger.log("Object is not an array");
     return;
@@ -614,7 +1038,25 @@ function whenNumberNotEqualToAny(numberArr, rng, col){
     return;
   }
   var output = rng.filter(wnneta);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wnneta(ar){
@@ -630,7 +1072,7 @@ function wnneta(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberEqualToAny(numberArr, rng, col){
+function whenNumberEqualToAny(numberArr, rng, col, targetCol = 0){
   if(Object.prototype.toString.call(numberArr).substring(8,13)!="Array"){
     Logger.log("Object is not an array");
     return;
@@ -649,7 +1091,25 @@ function whenNumberEqualToAny(numberArr, rng, col){
     return;
   }
   var output = rng.filter(wneta);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wneta(ar){
@@ -665,7 +1125,7 @@ function wneta(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberLessThanOrEqualTo(number, rng, col){
+function whenNumberLessThanOrEqualTo(number, rng, col, targetCol = 0){
   if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
@@ -674,7 +1134,25 @@ function whenNumberLessThanOrEqualTo(number, rng, col){
     return;
   }
   var output = rng.filter(wnltoet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wnltoet(ar){
@@ -685,7 +1163,7 @@ function wnltoet(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberNotEqualTo(number, rng, col){
+function whenNumberNotEqualTo(number, rng, col, targetCol = 0){
   if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
@@ -694,7 +1172,25 @@ function whenNumberNotEqualTo(number, rng, col){
     return;
   }
   var output = rng.filter(wnnet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wnnet(ar){
@@ -705,7 +1201,7 @@ function wnnet(ar){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
-function whenNumberEqualTo(number, rng, col){
+function whenNumberEqualTo(number, rng, col, targetCol = 0){
   if (typeof col == "number" && typeof number == "number"){
     setData.col = col;
     setData.num = number;
@@ -714,7 +1210,25 @@ function whenNumberEqualTo(number, rng, col){
     return;
   }
   var output = rng.filter(wnet);
-  return output;
+  if(targetCol == 0){
+    return output;
+  }
+  else if(typeof targetCol == "number"){
+    var result = output.map(function (item) {
+      return item[targetCol-1];
+    });
+    return result;
+  }
+  else if(typeof targetCol == "string"){
+    var targetnum = letterToColumn(targetCol);
+    var result = output.map(function (item) {
+      return item[targetnum-1];
+    });
+    return result;
+  }
+  else{
+    return;
+  }
 }
 
 function wnet(ar){
@@ -724,5 +1238,3 @@ function wnet(ar){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
-
-
