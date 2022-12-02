@@ -1,0 +1,10 @@
+function testFunction(){
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss1 = ss.getSheetByName("Sheet1");
+  var output = ss1.getRange(1,1,ss1.getLastRow(),4).getValues();
+  
+  //////whenNumberNotBetween(start, end, rng, col, targetCol = 0)
+  output = whenNumberNotBetween(1, 10, output, 3, 5);
+
+  Logger.log(output);
+}
