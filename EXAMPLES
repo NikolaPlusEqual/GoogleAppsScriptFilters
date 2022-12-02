@@ -1,0 +1,38 @@
+function example1(){
+  //// Return all values from column 5 where in 3rd column the folowing criteria is satisfied:
+  //// Number is not between 1 and 10
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss1 = ss.getSheetByName("Sheet1");
+  var range = ss1.getRange(1,1,ss1.getLastRow(),4).getValues();
+  
+  //////whenNumberNotBetween(start, end, rng, col, targetCol = 0)
+  output = whenNumberNotBetween(1, 10, range, 3, 5);
+
+  Logger.log(output);
+}
+
+function example2(){
+  //// Return all values from column "E" where in 3rd column the folowing criteria is satisfied:
+  //// Number is not between 1 and 10
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss1 = ss.getSheetByName("Sheet1");
+  var range = ss1.getRange(1,1,ss1.getLastRow(),4).getValues();
+  
+  //////whenNumberNotBetween(start, end, rng, col, targetCol = 0)
+  output = whenNumberNotBetween(1, 10, range, 3, "E");
+
+  Logger.log(output);
+}
+
+function example3(){
+  //// Return all values from entire range, where in 3rd column the folowing criteria is satisfied:
+  //// Number is not between 1 and 10
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var ss1 = ss.getSheetByName("Sheet1");
+  var range = ss1.getRange(1,1,ss1.getLastRow(),4).getValues();
+  
+  //////whenNumberNotBetween(start, end, rng, col, targetCol = 0)
+  output = whenNumberNotBetween(1, 10, range, 3);
+
+  Logger.log(output);
+}
