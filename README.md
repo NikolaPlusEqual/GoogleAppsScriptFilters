@@ -25,7 +25,8 @@ These functions do not affect activation of a filter in the sheet.
  whenTextNotEqualToAny(texts) --->  whenTextNotEqualToAny(textArr, rng, col)   
  whenTextStartsWith(text) --->  whenTextStartsWith(txt, rng, col)  
  
- Every GoogleAppsScriptFilters function has two additional parameters: rng and col   
+ Every GoogleAppsScriptFilters function has additional parameters: rng, col and targetCol  
  rng parameter represents the range which function takes,   
- col parameter represents the column in which filtering criteria will be applied.   
+ col parameter represents the column in which filtering criteria will be applied,
+ targetCol parameter is optional and represents single column from which data is pulled (instead of entire row that satisfies the filter criteria). It can be a letter (like 'A', 'B', 'C' ...) or number (like 1, 2, 3 ...) Default value is zero and in that case entire row data is returned.
 
