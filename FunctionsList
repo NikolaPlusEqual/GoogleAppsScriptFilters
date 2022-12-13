@@ -1,3 +1,7 @@
+Functions that return an data range with data from the rows from range rng (if parameter targetCol=0), where certain criteria is satisfied in in column col, 
+or 
+functions that return an array with data from the cells from range rng (if parameter targetCol is specified), where certain criteria is satisfied in in column col:
+
 whenCellEmpty(rng, col, targetCol = 0)
 whenCellNotEmpty(rng, col, targetCol = 0)
 whenDateAfter(date, rng, col, targetCol = 0)
@@ -28,6 +32,8 @@ whenTrimmedCellEmpty(rng, col, targetCol = 0)
 whenTrimmedTextEndsWith(txt, rng, col, targetCol = 0)
 
 
+
+Functions that return an array with row numbers inside range rng, where certain criteria is satisfied in in column col:
 
 rowsWhereCellEmpty(rng, col)
 rowsWhereCellNotEmpty(rng, col)
