@@ -1238,3 +1238,562 @@ function wnet(ar){
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
+
+function rowsWhereNumberEqualToAny(numberArr, rng, col){
+  var output = [];
+  if(Object.prototype.toString.call(numberArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
+  var trueType = true;
+  numberArr.forEach(function(item){
+    if (typeof item != "number"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" && trueType == true){
+    for (var i = 0; i < rng.length; i++ ){
+      numberArr.forEach(function(item){
+      if(rng[i][col-1] == item && typeof rng[i][col-1] == "number"){
+        output.push(i+1);
+      }});
+    }
+  }
+  else{
+    return;
+  }
+  var output2 = output.filter((item, index) => output.indexOf(item) === index);
+  return output2;
+} 
+
+function rowsWhereNumberNotEqualToAny(numberArr, rng, col){
+  var output = Array.from(Array(rng.length+1).keys()).slice(1);
+  var output2 = [];
+  var output3 = [];
+  if(Object.prototype.toString.call(numberArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
+  var trueType = true;
+  numberArr.forEach(function(item){
+    if (typeof item != "number"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" && trueType == true){
+    for (var i = 0; i < rng.length; i++ ){
+      numberArr.forEach(function(item){
+      if(rng[i][col-1] == item || typeof rng[i][col-1] != "number"){
+        output2.push(i+1);
+      }});
+    }
+  }
+  else{
+    return;
+  }
+  output.forEach(function(item){
+    if (!output2.includes(item)){
+      output3.push(item);
+    }
+  });
+  return output3;
+}
+
+function rowsWhereTextEqualToAny(textArr, rng, col){
+  var output = [];
+  if(Object.prototype.toString.call(textArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
+  var trueType = true;
+  textArr.forEach(function(item){
+    if (typeof item != "string"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" && trueType == true){
+    for (var i = 0; i < rng.length; i++ ){
+      textArr.forEach(function(item){
+      if(rng[i][col-1] == item && typeof rng[i][col-1] == "string"){
+        output.push(i+1);
+      }});
+    }
+  }
+  else{
+    return;
+  }
+  var output2 = output.filter((item, index) => output.indexOf(item) === index);
+  return output2;
+}
+
+function rowsWhereTextNotEqualToAny(textArr, rng, col){
+  var output = Array.from(Array(rng.length+1).keys()).slice(1);
+  var output2 = [];
+  var output3 = [];
+  if(Object.prototype.toString.call(textArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
+  var trueType = true;
+  textArr.forEach(function(item){
+    if (typeof item != "string"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" && trueType == true){
+    for (var i = 0; i < rng.length; i++ ){
+      textArr.forEach(function(item){
+      if(rng[i][col-1] == item || typeof rng[i][col-1] != "string"){
+        output2.push(i+1);
+      }});
+    }
+  }
+  else{
+    return;
+  }
+  output.forEach(function(item){
+    if (!output2.includes(item)){
+      output3.push(item);
+    }
+  });
+  return output3;
+}
+
+function rowsWhereDateNotEqualToAny(dateArr, rng, col){
+  var output = [];
+  if(Object.prototype.toString.call(dateArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
+  var trueType = true;
+  dateArr.forEach(function(item){
+    if (Object.prototype.toString.call(item).substring(8,12)!="Date"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" && trueType == true){
+    for (var i = 0; i < rng.length; i++ ){
+      if (Object.prototype.toString.call(rng[i][col-1]).substring(8,12)=="Date"){
+        var date2Days = Math.floor(rng[i][col-1].getTime()/86400000);
+        dateArr.forEach(function(item){
+          if(date2Days != Math.floor(item.getTime()/86400000) && Object.prototype.toString.call(item).substring(8,12)=="Date"){
+            output.push(i+1);
+          }});
+      }
+      else{
+        continue;
+      }
+    }
+  }
+  else{
+    return;
+  }
+  var output2 = output.filter((item, index) => output.indexOf(item) === index);
+  return output2;
+}
+
+function rowsWhereDateEqualToAny(dateArr, rng, col){
+  var output = [];
+  if(Object.prototype.toString.call(dateArr).substring(8,13)!="Array"){
+    Logger.log("Object is not an array");
+    return;
+  }
+  var trueType = true;
+  dateArr.forEach(function(item){
+    if (Object.prototype.toString.call(item).substring(8,12)!="Date"){
+      trueType = false;
+    }
+  });
+  if (typeof col == "number" && trueType == true){
+    for (var i = 0; i < rng.length; i++ ){
+      if (Object.prototype.toString.call(rng[i][col-1]).substring(8,12)=="Date"){
+        var date2Days = Math.floor(rng[i][col-1].getTime()/86400000);
+        dateArr.forEach(function(item){
+          if(date2Days == Math.floor(item.getTime()/86400000) && Object.prototype.toString.call(item).substring(8,12)=="Date"){
+            output.push(i+1);
+          }});
+      }
+      else{
+        continue;
+      }
+    }
+  }
+  else{
+    return;
+  }
+  var output2 = output.filter((item, index) => output.indexOf(item) === index);
+  return output2;
+}
+
+function rowsWhereDateAfter(date, rng, col){
+  var output = [];
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = Math.floor(date.getTime()/86400000);
+    for (var i = 0; i < rng.length; i++ ){
+      if (Object.prototype.toString.call(rng[i][col-1]).substring(8,12)=="Date"){
+        var date2Days = Math.floor(rng[i][col-1].getTime()/86400000);
+        if (date1Days < date2Days){
+          output.push(i+1);
+        }
+      }
+      else{
+        continue;
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereDateBefore(date, rng, col){
+  var output = [];
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = Math.floor(date.getTime()/86400000);
+    for (var i = 0; i < rng.length; i++ ){
+      if (Object.prototype.toString.call(rng[i][col-1]).substring(8,12)=="Date"){
+        var date2Days = Math.floor(rng[i][col-1].getTime()/86400000);
+        if (date1Days > date2Days){
+          output.push(i+1);
+        }
+      }
+      else{
+        continue;
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereDateEqualTo(date, rng, col){
+  var output = [];
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = Math.floor(date.getTime()/86400000);
+    for (var i = 0; i < rng.length; i++ ){
+      if (Object.prototype.toString.call(rng[i][col-1]).substring(8,12)=="Date"){
+        var date2Days = Math.floor(rng[i][col-1].getTime()/86400000);
+        if (date1Days == date2Days){
+          output.push(i+1);
+        }
+      }
+      else{
+        continue;
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereDateNotEqualTo(date, rng, col){
+  var output = [];
+  if (typeof col == "number" && Object.prototype.toString.call(date).substring(8,12)=="Date"){
+    var date1Days = Math.floor(date.getTime()/86400000);
+    for (var i = 0; i < rng.length; i++ ){
+      if (Object.prototype.toString.call(rng[i][col-1]).substring(8,12)=="Date"){
+        var date2Days = Math.floor(rng[i][col-1].getTime()/86400000);
+        if (date1Days != date2Days){
+          output.push(i+1);
+        }
+      }
+      else{
+        continue;
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTrimmedCellEmpty(rng, col){
+  var output = [];
+  var str;
+  if (typeof col == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      str =  rng[i][col-1].toString().trim();
+      if (str == ""){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereCellNotEmpty(rng, col){
+  var output = [];
+  if (typeof col == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1] != ""){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereCellEmpty(rng, col){
+  var output = [];
+  if (typeof col == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1] == ""){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTrimmedTextEndsWith(txt, rng, col){
+  var output = [];
+  var str;
+  if (typeof col == "number" && typeof txt == "string"){
+    for (var i = 0; i < rng.length; i++ ){
+      str =  rng[i][col-1].toString().trim();
+      if (str.endsWith(txt)){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTextEndsWith(txt, rng, col){
+  var output = [];
+  var str;
+  if (typeof col == "number" && typeof txt == "string"){
+    for (var i = 0; i < rng.length; i++ ){
+      str =  rng[i][col-1].toString();
+      if (str.endsWith(txt)){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTextStartsWith(txt, rng, col){
+  var output = [];
+  var str;
+  if (typeof col == "number" && typeof txt == "string"){
+    for (var i = 0; i < rng.length; i++ ){
+      str =  rng[i][col-1].toString();
+      if (str.startsWith(txt)){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTextDoesNotContain(txt, rng, col){
+  var output = [];
+  var str;
+  if (typeof col == "number" && typeof txt == "string"){
+    for (var i = 0; i < rng.length; i++ ){
+      str =  rng[i][col-1].toString();
+      if (!str.includes(txt)){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTextContains(txt, rng, col){
+  var output = [];
+  var str;
+  if (typeof col == "number" && typeof txt == "string"){
+    for (var i = 0; i < rng.length; i++ ){
+      str =  rng[i][col-1].toString();
+      if (str.includes(txt)){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTextNotEqualTo(txt, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof txt == "string"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]!=txt){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereTextEqualTo(txt, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof txt == "string"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]==txt){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberBetween(start, end, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof start == "number" && typeof end == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      var between_condition = rng[i][col-1] <= end && rng[i][col-1] >= start;
+      if (between_condition && typeof rng[i][col-1]=="number"){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberNotBetween(start, end, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof start == "number" && typeof end == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      var between_condition = rng[i][col-1] > end || rng[i][col-1] < start;
+      if (between_condition && typeof rng[i][col-1]=="number"){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberGreaterThanOrEqualTo(number, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof number == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]>=number && typeof rng[i][col-1]=="number"){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberGreaterThan(number, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof number == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]>number && typeof rng[i][col-1]=="number"){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberLessThan(number, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof number == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]<number && typeof rng[i][col-1]=="number"){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberLessThanOrEqualTo(number, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof number == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]<=number && typeof rng[i][col-1]=="number"){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberNotEqualTo(number, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof number == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]!=number){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
+function rowsWhereNumberEqualTo(number, rng, col){
+  var output = [];
+  if (typeof col == "number" && typeof number == "number"){
+    for (var i = 0; i < rng.length; i++ ){
+      if (rng[i][col-1]==number){
+        output.push(i+1);
+      }
+    }
+  }
+  else{
+    return;
+  }
+  return output;
+}
+
