@@ -1,6 +1,6 @@
-Functions that return data range with data from the rows in range rng (if parameter targetCol=0), where certain criteria is satisfied in in column col, 
+Functions that return 2d array with data from the rows in the Google Sheet range rng (if parameter targetCol=0), where certain criteria is satisfied in column col, 
 or 
-functions that return an array with data from the cells in range rng (if parameter targetCol is specified), where certain criteria is satisfied in in column col:
+functions that return 1d array with data from the cells in target column (if parameter targetCol is specified) and the row in the Google Sheet range rng, where certain criteria is satisfied in in column col:
 
 whenCellEmpty(rng, col, targetCol = 0)
 whenCellNotEmpty(rng, col, targetCol = 0)
@@ -32,8 +32,7 @@ whenTrimmedCellEmpty(rng, col, targetCol = 0)
 whenTrimmedTextEndsWith(txt, rng, col, targetCol = 0)
 
 
-
-Functions that return array with row numbers inside range rng, where certain criteria is satisfied in in column col:
+Functions that return array with row numbers inside the Google Sheet range rng, where certain criteria is satisfied in in column col:
 
 rowsWhereCellEmpty(rng, col)
 rowsWhereCellNotEmpty(rng, col)
